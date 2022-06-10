@@ -7,9 +7,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(
+            name="getAllMessages",
+            query="select m from Task AS m order by m.id desc"
+    ),
+    @NamedQuery(
+            name="getMessageCount",
+            query="select count(m) from Task as m"
+    )
+})
+
 @Table(name = "tasks")
 public class Task {
     @Id
